@@ -1,0 +1,147 @@
+$border-color: #dddbdb;
+$blocked-bd-color: #e86d6f;
+$active-bd-color: #58e0a7;
+$inactive-bd-color: #80807d;
+$blocked-bg-color: #faf0f0;
+$active-bg-color: #ebfaf5;
+$inactive-bg-color: #f0f0f0;
+$invited-bd-color: #79b4ff;
+$invited-bg-color: #ebf5ff;
+
+// mixins
+@mixin flexbox($justify: null, $align: null, $direction: row, $gap: 0) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
+
+main {
+  width: 80%;
+  margin: auto;
+  padding: 20px 0px;
+
+  p {
+    color: #878686;
+    font-size: 16px;
+  }
+}
+
+.column-name {
+  display: flex;
+  align-items: center;
+  color: #555050;
+
+  svg {
+    margin-right: 2px;
+    cursor: pointer;
+  }
+
+  span{
+    margin-right: 10px;
+  }
+}
+
+.searchbar{
+  width: 300px;
+}
+
+.name-col {
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.table {
+  tr {
+    font-size: 16px;
+  }
+}
+
+.top-section {
+  @include flexbox(space-between, center);
+  margin: 10px 0px;
+}
+
+.sort-asc,
+.sort-desc {
+  color: $active-bd-color;
+}
+
+.status-container {
+  margin: 1.5rem 0;
+  @include flexbox(space-between, center, null, 1.5rem);
+  width: 100%;
+}
+
+.action-icon {
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  @include flexbox(center, center);
+
+  svg {
+    font-size: 20px;
+  }
+}
+
+// css for action buttons in table 
+.action-icon.active {
+  border: 1px solid $active-bd-color;
+  background-color: $active-bg-color;
+  color: $active-bd-color;
+}
+
+.action-icon.inactive {
+  border: 1px solid $inactive-bd-color;
+  background-color: $inactive-bg-color;
+  color: $inactive-bd-color;
+}
+
+.action-icon.block {
+  border: 1px solid $blocked-bd-color;
+  background-color: $blocked-bg-color;
+  color: $blocked-bd-color;
+}
+
+// css for status column cell in table 
+.status-blocked {
+  border: 1px solid $blocked-bd-color;
+  background-color: $blocked-bg-color;
+  color: $blocked-bd-color;
+  text-transform: capitalize;
+}
+
+.status-invited {
+  border: 1px solid $invited-bd-color;
+  background-color: $invited-bg-color;
+  color: $invited-bd-color;
+  text-transform: capitalize;
+}
+
+.status-active {
+  border: 1px solid $active-bd-color;
+  background-color: $active-bg-color;
+  color: $active-bd-color;
+  text-transform: capitalize;
+}
+
+.applied-filters-container {
+  @include flexbox(start, center, row, 0.6rem);
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+
+// common/shared css
+%flex-container {
+  @include flexbox(space-between);
+}
+
+.filters-container {
+  @extend %flex-container;
+}
+
+.filters {
+  @extend %flex-container;
+  gap: 1rem;
+}

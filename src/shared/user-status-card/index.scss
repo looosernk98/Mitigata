@@ -1,0 +1,43 @@
+@use "../../App";
+
+$icon-bg: #ebfaf5;
+
+.card-container {
+    width: fit-content;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid App.$border-color;
+    border-radius: 12px;
+    width: 25%;
+
+    @include App.flexbox();
+}
+
+.user-status-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: $icon-bg;
+
+    svg {
+        fill: #00d77d;
+        font-size: 30px;
+        stroke: none;
+        stroke-width: 5;
+    }
+}
+
+.user-info-wrapper {
+    padding: 0px 0px 0px 20px;
+
+    svg {
+        margin-left: 1.5rem;
+    }
+}
+
+.status-text {
+    color: #878686;
+    margin-bottom: 5px;
+}
