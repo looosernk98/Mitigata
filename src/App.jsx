@@ -7,7 +7,7 @@ import UserStatusCard from './shared/user-status-card';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import { ACTIVE, ASC_ORDER, BLOCKED, DESC_ORDER, INVITED, TOTAL, USER_STATUS_DETAILS } from './constants/constants';
-import { calculateUserStatusPercentage, formatDate, getChipLabel, sortUserData } from './utils/utils';
+import { calculateUserStatusPercentage, formatDate, getChipLabel, globalSearch, sortUserData } from './utils/utils';
 import { DownOutlined, UserOutlined } from '@ant-design/icons';
 import Chip from './shared/chip'
 import TableAction from './shared/table-action';
@@ -134,7 +134,7 @@ const App = () => {
         if (key === 'status' && item?.about?.status !== value) {
           isValidItem = false;
         }
-        if (key === 'search_query' && !item?.about?.name?.toLowerCase()?.includes(value.toLowerCase())) {
+        if (key === 'search_query' && !globalSearch(value, item)) {
 
           isValidItem = false;
         }
@@ -177,6 +177,9 @@ const App = () => {
       const end = filter[1]?.$d
       value = start + "@" + end;
     }
+    if(key === 'search_query'){
+      value = appliedFilters?.search_query ?  appliedFilters?.search_query + '@' + value : value
+    }
     setAppliedFilters({ ...appliedFilters, [key]: value })
   }
 
@@ -200,6 +203,9 @@ const App = () => {
     items: STATUS_FILTER_OPTIONS,
     onClick: applyFilter('status'),
   };
+
+  // const modifiedFilters = appliedFilters;
+  // modifiedFilters?.for
 
   return (
     <main>
@@ -267,6 +273,7 @@ const App = () => {
 
         }
       </div>
+      
       <Table
         className='table'
         pagination={{ position: ['bottomCenter'] }}

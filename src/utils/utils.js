@@ -96,3 +96,27 @@ export const sortUserData = (userData, sortConfig) => {
   }
   return data;
 };
+
+export const globalSearch = (query, item) => {
+  const words = query?.split('@')
+  console.log('words: ', words);
+  const keys = Object.keys(item?.about);
+  for(let i =0; i<keys.length; i++){
+    const key = keys[i];
+     if(words?.length > 1){
+      //  const isValid = false
+        for(let word of words){
+          console.log('word: ', word);
+          if(!item?.about[key].toLowerCase().includes(word.toLowerCase())){
+            console.log('Matching: ', item?.about[key], word)
+            return false;
+           }
+        }
+        return true;
+     }
+     if(item?.about[key].toLowerCase().includes(query.toLowerCase())){
+      return true;
+     }
+  }
+  return false;
+}

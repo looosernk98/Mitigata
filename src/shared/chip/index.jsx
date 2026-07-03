@@ -5,6 +5,8 @@ const Chip = ({
     label,
     clearFilter
 }) => {
+    // const search
+    
     return (
         <span>
             <Tag
